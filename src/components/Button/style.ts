@@ -10,7 +10,7 @@ export const ButtonContainer = styled.button`
   font-size: 1rem;
   text-transform: uppercase;
 
-  padding: 0.8rem 2rem;
+  padding: 0.9rem 2rem;
 
   &:hover {
     background: ${props => props.theme['green-100']};

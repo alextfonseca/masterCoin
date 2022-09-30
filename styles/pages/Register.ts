@@ -37,10 +37,6 @@ export const FormBox = styled.form`
 
   border-radius: 5px;
 
-  button {
-    margin-top: 2rem;
-  }
-
   p {
     margin-top: 1rem;
     font-size: 1.125rem;
@@ -53,6 +49,10 @@ export const FormBox = styled.form`
         color: ${props => props.theme['green-100']};
       }
     }
+  }
+
+  button {
+    margin-top: 2rem;
   }
 `
 
