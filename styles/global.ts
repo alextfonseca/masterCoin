@@ -24,10 +24,10 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  background: ${props => props.theme['black-50']};
+  background: ${props => props.theme['black-200']};
   color: ${props => props.theme['white-50']};
   -webkit-font-smoothing: antialiased;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body,
@@ -37,13 +37,18 @@ select,
 button,
 p {
   font-size: 0.9rem;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+h1{
+  font-size: 3.375rem;
+  color: ${props => props.theme['white-100']};
 }
 
 h2 {
   font-size: 1.7rem;
   font-weight: 900;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 a {
@@ -54,6 +59,22 @@ a {
   transition: all 0.3s;
 
   padding: 0.5rem 0;
+}
+
+button{
+  cursor: pointer;
+  transition: all .3s;
+}
+
+input{
+  width: 100%;
+  border: none;
+
+  padding: 1rem;
+
+  border-radius: 5px;
+
+  outline: none;
 }
 
 .formGroup {
