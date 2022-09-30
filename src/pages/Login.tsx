@@ -13,7 +13,7 @@ import { Button } from '../components/Button'
 import Head from 'next/head'
 import { Envelope, Eye, EyeSlash, Lock } from 'phosphor-react'
 
-export const Login = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
 
   function handleShowPassword() {
@@ -73,3 +73,5 @@ export const Login = () => {
     </>
   )
 }
+
+export default Login
