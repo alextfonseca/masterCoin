@@ -1,24 +1,31 @@
 import Image from 'next/future/image'
 import React, { useState } from 'react'
 
-import styles from '../../styles/pages/login.module.scss'
-
 import Logo from '../../public/icons/logo.svg'
 import { Button } from '../components/Button'
 import Head from 'next/head'
-import { Envelope, Eye, EyeSlash, Lock } from 'phosphor-react'
+import { Envelope, Eye, EyeSlash, Lock, User } from 'phosphor-react'
 
-const Login = () => {
+import styles from '../../styles/pages/register.module.scss'
+import { useRouter } from 'next/router'
+
+const Register = () => {
+  const router = useRouter()
+
   const [showPassword, setShowPassword] = useState(false)
 
   function handleShowPassword() {
     setShowPassword(!showPassword)
   }
 
+  function navigate() {
+    router.push('/home')
+  }
+
   return (
     <>
       <Head>
-        <title>Master Currency | Login</title>
+        <title>Master Currency | Registro</title>
       </Head>
       <main className={styles.container}>
         <div className={styles.content}>
@@ -30,12 +37,15 @@ const Login = () => {
               height={100}
             />
 
-            <h1>
-              Faça login na plataforma e fique por dentro do mundo do dinheiro
-            </h1>
+            <h1>Fique por dentro do mundo financeiro em poucos cliques</h1>
           </div>
 
-          <form className={styles.formBox}>
+          <div className={styles.formBox}>
+            <div className={styles.inputContainer}>
+              <User size={20} color={'#00875f'} />
+              <input type="text" placeholder="Digite seu nome completo" />
+            </div>
+
             <div className={styles.inputContainer}>
               <Envelope size={20} color={'#00875f'} />
               <input type="email" placeholder="Digite seu e-mail" />
@@ -57,16 +67,16 @@ const Login = () => {
               </button>
             </div>
 
-            <Button buttonText={'Entrar'} onClickFunction={() => {}} />
-
             <p>
-              Ainda não possui uma conta ? <a href="/Register">Registrar-se</a>{' '}
+              Já possui uma conta ? <a href="/login">Logar</a>{' '}
             </p>
-          </form>
+
+            <Button buttonText={'Cadastrar'} onClickFunction={navigate} />
+          </div>
         </div>
       </main>
     </>
   )
 }
 
-export default Login
+export default Register
