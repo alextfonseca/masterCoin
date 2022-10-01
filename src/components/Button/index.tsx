@@ -1,5 +1,6 @@
 import React from 'react'
-import { ButtonContainer } from './style'
+
+import styles from './styles.module.scss'
 
 interface ButtonProps {
   buttonText: string
@@ -13,8 +14,8 @@ export const Button = ({
   onClickFunction
 }: ButtonProps) => {
   return (
-    <ButtonContainer type={type} onClick={onClickFunction}>
+    <button className={styles.button} type={type} onClick={onClickFunction}>
       {buttonText}
-    </ButtonContainer>
+    </button>
   )
 }

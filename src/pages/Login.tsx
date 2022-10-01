@@ -1,12 +1,7 @@
 import Image from 'next/future/image'
 import React, { useState } from 'react'
-import {
-  Container,
-  Content,
-  ContentText,
-  FormBox,
-  InputContainer
-} from '../../styles/pages/Login'
+
+import styles from '../../styles/pages/login.module.scss'
 
 import Logo from '../../public/icons/logo.svg'
 import { Button } from '../components/Button'
@@ -25,9 +20,9 @@ const Login = () => {
       <Head>
         <title>Master Currency | Login</title>
       </Head>
-      <Container>
-        <Content>
-          <ContentText>
+      <main className={styles.container}>
+        <div className={styles.content}>
+          <div className={styles.contentText}>
             <Image
               src={Logo}
               alt="Logo da empresa escrito Master Currency, sendo o S representado pelo sinal de real"
@@ -38,15 +33,15 @@ const Login = () => {
             <h1>
               Faça login na plataforma e fique por dentro do mundo do dinheiro
             </h1>
-          </ContentText>
+          </div>
 
-          <FormBox>
-            <InputContainer>
+          <form className={styles.formBox}>
+            <div className={styles.inputContainer}>
               <Envelope size={20} color={'#00875f'} />
               <input type="email" placeholder="Digite seu e-mail" />
-            </InputContainer>
+            </div>
 
-            <InputContainer>
+            <div className={styles.inputContainer}>
               <Lock size={20} color={'#00875f'} />
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -60,16 +55,16 @@ const Login = () => {
                   <Eye size={25} color={'#00875f'} />
                 )}
               </button>
-            </InputContainer>
+            </div>
 
             <Button buttonText={'Entrar'} onClickFunction={() => {}} />
 
             <p>
               Ainda não possui uma conta ? <a href="/Register">Registrar-se</a>{' '}
             </p>
-          </FormBox>
-        </Content>
-      </Container>
+          </form>
+        </div>
+      </main>
     </>
   )
 }

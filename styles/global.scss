@@ -1,6 +1,20 @@
-import { createGlobalStyle } from 'styled-components'
+:root {
+  --white-50: #fff;
+  --white-100: #e1e1e6;
+  --white-200: #cccccc;
 
-export const GlobalStyle = createGlobalStyle`
+  --black-50: #29292e;
+  --black-100: #202024;
+  --black-200: #121214;
+
+  --green-50: #00b37e;
+  --green-100: #00875f;
+
+  --red-500: #ab222e;
+  --red-700: #7a1921;
+
+  --yellow-500: #fba94c;
+}
 
 * {
   margin: 0;
@@ -24,10 +38,10 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  background: ${props => props.theme['black-200']};
-  color: ${props => props.theme['white-50']};
+  background: var(--black-200);
+  color: var(--white-50);
   -webkit-font-smoothing: antialiased;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 body,
@@ -37,18 +51,18 @@ select,
 button,
 p {
   font-size: 0.9rem;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
-h1{
+h1 {
   font-size: 3.375rem;
-  color: ${props => props.theme['white-100']};
+  color: var(--white-100);
 }
 
 h2 {
   font-size: 1.7rem;
   font-weight: 900;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -61,12 +75,12 @@ a {
   padding: 0.5rem 0;
 }
 
-button{
+button {
   cursor: pointer;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
-input{
+input {
   width: 100%;
   border: none;
 
@@ -86,17 +100,13 @@ input{
   width: 100%;
 }
 
-
 .erroMessage {
   color: red;
   font-size: 0.8rem;
 }
-
 
 .error {
   border: 1px solid red;
   border-radius: 0.4rem;
   overflow: hidden;
 }
-
-`

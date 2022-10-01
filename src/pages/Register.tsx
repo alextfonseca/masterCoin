@@ -5,13 +5,8 @@ import Logo from '../../public/icons/logo.svg'
 import { Button } from '../components/Button'
 import Head from 'next/head'
 import { Envelope, Eye, EyeSlash, Lock, User } from 'phosphor-react'
-import {
-  Container,
-  Content,
-  ContentText,
-  FormBox,
-  InputContainer
-} from '../../styles/pages/Register'
+
+import styles from '../../styles/pages/register.module.scss'
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -25,9 +20,9 @@ const Register = () => {
       <Head>
         <title>Master Currency | Registro</title>
       </Head>
-      <Container>
-        <Content>
-          <ContentText>
+      <main className={styles.container}>
+        <div className={styles.content}>
+          <div className={styles.contentText}>
             <Image
               src={Logo}
               alt="Logo da empresa escrito Master Currency, sendo o S representado pelo sinal de real"
@@ -36,20 +31,20 @@ const Register = () => {
             />
 
             <h1>Fique por dentro do mundo financeiro em poucos cliques</h1>
-          </ContentText>
+          </div>
 
-          <FormBox>
-            <InputContainer>
+          <div className={styles.formBox}>
+            <div className={styles.inputContainer}>
               <User size={20} color={'#00875f'} />
               <input type="text" placeholder="Digite seu nome completo" />
-            </InputContainer>
+            </div>
 
-            <InputContainer>
+            <div className={styles.inputContainer}>
               <Envelope size={20} color={'#00875f'} />
               <input type="email" placeholder="Digite seu e-mail" />
-            </InputContainer>
+            </div>
 
-            <InputContainer>
+            <div className={styles.inputContainer}>
               <Lock size={20} color={'#00875f'} />
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -63,16 +58,16 @@ const Register = () => {
                   <Eye size={25} color={'#00875f'} />
                 )}
               </button>
-            </InputContainer>
+            </div>
 
             <p>
               Já possui uma conta ? <a href="/Login">Logar</a>{' '}
             </p>
 
             <Button buttonText={'Cadastrar'} onClickFunction={() => {}} />
-          </FormBox>
-        </Content>
-      </Container>
+          </div>
+        </div>
+      </main>
     </>
   )
 }
