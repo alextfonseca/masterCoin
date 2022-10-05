@@ -9,8 +9,18 @@
   justify-content: space-between;
 
   a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: 1.125rem;
+
+    border: 1px solid var(--green-100);
+
+    padding: 0.5rem;
+
     &:hover {
-      filter: brightness(0.7);
+      background: var(--green-100);
     }
   }
 }

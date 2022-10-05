@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './styles.module.scss'
 
 import Logo from '../../../public/icons/logo.svg'
-import { SignOut } from 'phosphor-react'
+import { Envelope } from 'phosphor-react'
 
 export const Header = () => {
   return (
@@ -15,8 +15,9 @@ export const Header = () => {
         height={100}
       />
 
-      <a href="/">
-        <SignOut size={40} color={'#00b37e'} />
+      <a href="/register">
+        <Envelope size={40} color={'#00b37e'} />
+        Assinar newsletter
       </a>
     </header>
   )

@@ -6,16 +6,23 @@ interface ButtonProps {
   buttonText: string
   type?: 'submit' | 'button'
   onClickFunction: () => void
+  isLoading: boolean
 }
 
 export const Button = ({
   buttonText,
+  isLoading,
   type = 'button',
   onClickFunction
 }: ButtonProps) => {
   return (
-    <button className={styles.button} type={type} onClick={onClickFunction}>
-      {buttonText}
+    <button
+      disabled={isLoading}
+      className={styles.button}
+      type={type}
+      onClick={onClickFunction}
+    >
+      {isLoading ? 'Carregando...' : buttonText}
     </button>
   )
 }

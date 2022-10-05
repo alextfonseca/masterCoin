@@ -4,22 +4,39 @@ import React, { useState } from 'react'
 import Logo from '../../public/icons/logo.svg'
 import { Button } from '../components/Button'
 import Head from 'next/head'
-import { Envelope, Eye, EyeSlash, Lock, User } from 'phosphor-react'
+import { Envelope, User } from 'phosphor-react'
 
 import styles from '../../styles/pages/register.module.scss'
 import { useRouter } from 'next/router'
+import { api } from '../services/api'
+
+import { toast } from 'react-toastify'
 
 const Register = () => {
   const router = useRouter()
 
-  const [showPassword, setShowPassword] = useState(false)
+  const [userName, setUserName] = useState('')
+  const [userEmail, setUserEmail] = useState('')
 
-  function handleShowPassword() {
-    setShowPassword(!showPassword)
-  }
+  const [isLoading, setIsLoading] = useState(false)
 
-  function navigate() {
-    router.push('/home')
+  async function handleRegisterUser() {
+    setIsLoading(true)
+    try {
+      await api.post('/usuarios/create.php', {
+        nome: userName,
+        email: userEmail
+      })
+
+      toast.success('Registro feito com sucesso!')
+
+      router.push('/')
+    } catch (error) {
+      toast.error(
+        'Não foi possível fazer o registro, tente novamente mais tarde'
+      )
+    }
+    setIsLoading(false)
   }
 
   return (
@@ -43,35 +60,31 @@ const Register = () => {
           <div className={styles.formBox}>
             <div className={styles.inputContainer}>
               <User size={20} color={'#00875f'} />
-              <input type="text" placeholder="Digite seu nome completo" />
+              <input
+                type="text"
+                placeholder="Digite seu nome completo"
+                onChange={e => setUserName(e.target.value)}
+              />
             </div>
 
             <div className={styles.inputContainer}>
               <Envelope size={20} color={'#00875f'} />
-              <input type="email" placeholder="Digite seu e-mail" />
-            </div>
-
-            <div className={styles.inputContainer}>
-              <Lock size={20} color={'#00875f'} />
               <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Digite sua senha"
+                type="email"
+                placeholder="Digite seu e-mail"
+                onChange={e => setUserEmail(e.target.value)}
               />
-
-              <button type="button" onClick={handleShowPassword}>
-                {showPassword ? (
-                  <EyeSlash size={25} color={'#00875f'} />
-                ) : (
-                  <Eye size={25} color={'#00875f'} />
-                )}
-              </button>
             </div>
 
             <p>
-              Já possui uma conta ? <a href="/login">Logar</a>{' '}
+              <a href="/">Voltar para a home</a>{' '}
             </p>
 
-            <Button buttonText={'Cadastrar'} onClickFunction={navigate} />
+            <Button
+              buttonText={'Registrar'}
+              onClickFunction={handleRegisterUser}
+              isLoading={isLoading}
+            />
           </div>
         </div>
       </main>

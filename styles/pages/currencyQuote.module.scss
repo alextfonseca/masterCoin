@@ -1,0 +1,77 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    gap: 4rem;
+
+    max-width: 1180px;
+    margin: 0 auto;
+
+    .imageContainer {
+      width: 100%;
+      max-width: 576px;
+      height: 656px;
+      background: linear-gradient(180deg, #1ea483 0%, #7465d4 100%);
+      border-radius: 8px;
+      padding: 0.25rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      h1 {
+        font-size: 2rem;
+        color: var(--white-50);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+          font-size: 1.5rem;
+        }
+
+        select {
+          border: 2px solid transparent;
+          &:hover {
+            border: 2px solid var(--green-100);
+            box-shadow: 1px 1px 5px var(--green-100);
+          }
+
+          option {
+            font-size: 1.125rem;
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  }
+}
