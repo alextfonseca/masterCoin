@@ -24,6 +24,36 @@ const Home = () => {
               </footer>
             </div>
           </Link>
+
+          <Link href={`/bitcoinQuote`} prefetch={false}>
+            <div className={styles.card}>
+              <Coin size={100} />
+              <footer>
+                <strong>Valor de compra e venda do bitcoin</strong>
+                <span>by Blochchain.info</span>
+              </footer>
+            </div>
+          </Link>
+
+          <Link href={`/selicQuote`} prefetch={false}>
+            <div className={styles.card}>
+              <Coin size={100} />
+              <footer>
+                <strong>Valor da taxa selic</strong>
+                <span>by Brapi</span>
+              </footer>
+            </div>
+          </Link>
+
+          <Link href={`/inflationQuote`} prefetch={false}>
+            <div className={styles.card}>
+              <Coin size={100} />
+              <footer>
+                <strong>Valor da inflação</strong>
+                <span>by Brapi</span>
+              </footer>
+            </div>
+          </Link>
         </div>
       </main>
     </>

@@ -22,6 +22,12 @@ const Register = () => {
 
   async function handleRegisterUser() {
     setIsLoading(true)
+
+    if (!userName || !userEmail) {
+      toast.error('Preencha todos os campos')
+      setIsLoading(false)
+      return
+    }
     try {
       await api.post('/usuarios/create.php', {
         nome: userName,

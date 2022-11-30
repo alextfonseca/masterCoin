@@ -9,28 +9,14 @@ import { toast } from 'react-toastify'
 import { SecondaryButton } from '../components/SecondaryButton'
 import { useRouter } from 'next/router'
 
-interface quoteDataProps {
-  USDBRL: {
-    ask: string
-    bid: string
-    code: string
-    codeIn: string
-    create_data: string
-    high: string
-    low: string
-    name: string
-    pctChange: string
-    timeStamp: string
-    varbid: string
-  }
-}
+import XMLParser from 'react-xml-parser'
 
 const CurrencyQuote = () => {
   const router = useRouter()
 
   const [quoteCurrency, setQuoteCurrency] = useState('USD-BRL')
 
-  const [quoteData, setQuoteData] = useState<quoteDataProps>()
+  const [quoteData, setQuoteData] = useState<any>()
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -40,7 +26,11 @@ const CurrencyQuote = () => {
       const { data } = await api.post('/conversao/cotacao.php', {
         money: quoteCurrency
       })
-      setQuoteData(data)
+
+      const newData = new XMLParser().parseFromString(data)
+
+      console.log(newData.children[0])
+      setQuoteData(newData.children[0])
     } catch (error) {
       toast.error(
         'Não foi possível fazer a cotação, tente novamente mais tarde'
@@ -48,6 +38,20 @@ const CurrencyQuote = () => {
     }
     setIsLoading(false)
   }
+
+  const highestQuotationValue = Number(quoteData?.children[3].value)
+
+  const highestQuotation = highestQuotationValue.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  })
+
+  const lowestQuotationValue = Number(quoteData?.children[4].value)
+
+  const lowestQuotation = lowestQuotationValue.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  })
 
   return (
     <>
@@ -60,14 +64,9 @@ const CurrencyQuote = () => {
             {isLoading && <p>Carregando dados...</p>}
             {quoteData && !isLoading && (
               <div>
-                <p>Name: {quoteData?.USDBRL.name}</p>
-                <p>Ask: {quoteData?.USDBRL.ask}</p>
-                <p>Bid: {quoteData?.USDBRL.bid}</p>
-                <p>Code: {quoteData?.USDBRL.code}</p>
-                <p>CodeIn: {quoteData?.USDBRL.codeIn}</p>
-                <p>Low: {quoteData?.USDBRL.low}</p>
-                <p>High: {quoteData?.USDBRL.high}</p>
-                <p>VarBid: {quoteData?.USDBRL.varbid}</p>
+                <p>Cotação selecionada: {quoteData?.children[2].value}</p>
+                <p>Maior valor do dia: {highestQuotation}</p>
+                <p>Menor valor do dia: {lowestQuotation}</p>
               </div>
             )}
           </div>
@@ -82,7 +81,16 @@ const CurrencyQuote = () => {
                 id="quote"
                 onChange={e => setQuoteCurrency(e.target.value)}
               >
-                <option value="USD-BRL">Dólar para real</option>
+                <option value="USD-BRL">
+                  Dólar americano para Real Brasileiro Turismo
+                </option>
+                <option value="EUR-BRL">
+                  Euro para Real Brasileiro Turismo
+                </option>
+
+                <option value="BTC-BRL">
+                  Bitcoin para Real Brasileiro Turismo
+                </option>
               </select>
             </form>
 
